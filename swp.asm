@@ -4,7 +4,7 @@ extern printf
 section .rodata
     line db "%lf", 0x0
 section .data
-    num dq -1.0     ; input number
+    num dq 1.0     ; input number
 section .text
 global CMAIN
 der2_f3:
