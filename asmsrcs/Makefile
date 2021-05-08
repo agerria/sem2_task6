@@ -17,7 +17,7 @@ $(NAME): $(SRC_OBJECTS)
 	@echo "$(NAME) generated"
 
 %.o: %.asm $(HEADERS)
-	@nasm $(FLAGS) -c $< -o $@
+	@nasm $(FLAGS) $< -o $@
 	@echo "$@ added"
 clean:
 	@rm $(SRC_OBJECTS)
