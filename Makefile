@@ -1,39 +1,40 @@
-NAME = prac
+NAME = proj
 
-LIBFT = funcs
+LIBPATH = asmsrcs
 
-SRC = root.c
+LIB = asmsrcs/funcs.a
+
+SRC = integral.c root.c options.c main.c
 
 SRC_OBJECTS = $(patsubst %.c,%.o,$(SRC))
 
-FLAGS = -Wall -Wextra -Werror -g
+HEADERS = headers/
 
-all: MKLIB $(NAME).a
+FLAGS = -Wall -Wextra -Werror -g -m32 -I $(HEADERS)
+
+all: MKLIB $(SRC_OBJECTS)
+	@gcc $(FLAGS) -o $(NAME) $(SRC_OBJECTS) $(LIB) -lm
 
 MKLIB:
-	make -C $(LIBFT)
-$(NAME).a: $(LIBFT)/$(LIBFT).a $(SRC_OBJECTS)
-	cp $(LIBFT)/$(LIBFT).a ./$(NAME).a
-	ar rcs $(NAME).a $(SRC_OBJECTS)
+	make -C $(LIBPATH)
 
-%.o: %.c
-	@gcc $(FLAGS) -c $< -o $@
+%.o: %.c $(HEADERS)
+	@gcc $(FLAGS) -c $< -o $@ -lm
 	@echo "$@ added"
 
 clean:
-	@/bin/rm -rf $(SRC_OBJECTS)
-	make -C $(LIBFT) clean
+	@rm -f $(SRC_OBJECTS)
+	make -C $(LIBPATH) clean
 	@echo "All objects removed"
 
 fclean: clean
-	@rm $(NAME).a
-	make -C $(LIBFT) fclean
+	@rm -f $(NAME)
+	make -C $(LIBPATH) fclean
 	@echo "$(NAME) removed"
 
 re:
-	make -C $(LIBFT) fclean
+	make -C $(LIBPATH) fclean
 	make fclean
 	make all
 
-bonus: all
 .PHONY: all clean fclean re

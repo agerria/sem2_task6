@@ -5,7 +5,7 @@ SRC = val_f1.asm val_f2.asm val_f3.asm der1_f1.asm der1_f2.asm \
 
 SRC_OBJECTS = $(patsubst %.asm,%.o,$(SRC))
 
-HEADERS = funcs.h
+HEADERS = ../headers
 
 FLAGS = -f elf
 
@@ -19,12 +19,13 @@ $(NAME): $(SRC_OBJECTS)
 %.o: %.asm $(HEADERS)
 	@nasm $(FLAGS) $< -o $@
 	@echo "$@ added"
+
 clean:
-	@rm $(SRC_OBJECTS)
+	@rm -f $(SRC_OBJECTS)
 	@echo "All objects removed"
 
 fclean: clean
-	@rm $(NAME)
+	@rm -f $(NAME)
 	@echo "$(NAME) removed"
 
 re: fclean all
