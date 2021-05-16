@@ -50,8 +50,11 @@ void test_root(void) {
         res = root(val_f1, val_f2, left, right, acc, der1_f1, der1_f2, der2_f1, der2_f2);
     } else if ((inp1[1] == '1' && inp2[1] == '3') || (inp2[1] == '3' && inp1[1] == '1')) {
         res = root(val_f1, val_f3, left, right, acc, der1_f1, der1_f3, der2_f1, der2_f3);
-    } else {
+    } else if ((inp1[1] == '2' && inp2[1] == '3') || (inp2[1] == '3' && inp1[1] == '2')) {
         res = root(val_f2, val_f3, left, right, acc, der1_f2, der1_f3, der2_f2, der2_f3);
+    } else {
+        printf("\n   \033[0;31mBAD INPUT\033[0m \n");
+        return ;
     }
 
     printf("\n   --------------------------------------------------\n");
@@ -70,14 +73,17 @@ void test_integral(void) {
 
     printf("\nIntegral function testing...\n");
     printf("Input: function(f1/f2/f3), left border, right border, accuracy\n");
-    scanf("%2s %lf %lf %lf", inp, &left, &right, &acc);
+    scanf("%3s %lf %lf %lf", inp, &left, &right, &acc);
 
     if (inp[1] == '1') {
         res = integral(val_f1, left, right, eps2);
     } else if (inp[1] == '2') {
         res = integral(val_f2, left, right, eps2);
-    } else {
+    } else if (inp[1] == '3') {
         res = integral(val_f3, left, right, eps2);
+    } else {
+        printf("\n   \033[0;31mBAD INPUT\033[0m \n");
+        return ;
     }
 
     printf("\n   --------------------------------------------------\n");

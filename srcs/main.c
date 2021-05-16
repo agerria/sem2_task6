@@ -16,16 +16,16 @@ struct option long_options[] = {
 int main(int ac, char **av) {
     my_getopt(ac, av);
 
-    if (long_options[5].flag) {
+    if ((long_options[5].flag && long_options[6].flag) || long_options[4].flag) {
+        test_root();
+        test_integral();
+        exit (0);
+    } else if (long_options[5].flag) {
         test_root();
         exit(0);
     } else if (long_options[6].flag) {
         test_integral();
         exit(0);
-    } else if ((long_options[5].flag && long_options[6].flag) || long_options[4].flag) {
-        test_root();
-        test_integral();
-        exit (0);
     }
 
 
@@ -71,11 +71,11 @@ int main(int ac, char **av) {
         printf("   Steps to find the integral of a function f3 : %d\n", iters_f);
 
     if (long_options[1].flag || long_options[3].flag)
-        printf("   ---------------------integral---------------------\n");
+        printf("   ---------------------integral---------------------\n\n");
 
 
     double res = sq_f2 + sq_f3 - sq_f1;
-    printf("\n   The square of area bounded by three curves : %lf\n", res);
+    printf("   The square of area bounded by three curves : %lf\n", res);
 
     return 0;
 }

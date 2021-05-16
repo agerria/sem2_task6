@@ -4,7 +4,7 @@ LIBPATH = asmsrcs
 
 LIB = asmsrcs/funcs.a
 
-SRC = integral.c root.c options.c main.c
+SRC = srcs/integral.c srcs/root.c srcs/options.c srcs/main.c
 
 SRC_OBJECTS = $(patsubst %.c,%.o,$(SRC))
 

@@ -8,7 +8,7 @@
 #include <stdlib.h>
 
 #define eps1 0.0001
-#define eps2 0.00001
+#define eps2 0.0001
 
 //----------keeps track of the requested parameter----------//
 extern int iters_f;      
